@@ -1,2 +1,2 @@
 # ShopSphere
-An Ecommerce Web Application with basic CRUD Operations
+An Ecommerce Web Application with basic SCRUD Operations
