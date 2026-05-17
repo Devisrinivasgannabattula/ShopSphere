@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Login</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    overflow:hidden;
+}
+
+/* LEFT SIDE */
+
+.left-panel{
+    width:50%;
+    background:linear-gradient(135deg,#1d2671,#c33764);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:50px;
+    position:relative;
+}
+
+.left-panel::before{
+    content:'';
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.1);
+    top:-80px;
+    right:-80px;
+}
+
+.left-panel::after{
+    content:'';
+    position:absolute;
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    bottom:-70px;
+    left:-70px;
+}
+
+.brand{
+    position:relative;
+    z-index:1;
+    text-align:center;
+}
+
+.brand h1{
+    font-size:48px;
+    margin-bottom:20px;
+    font-weight:700;
+}
+
+.brand p{
+    font-size:18px;
+    line-height:1.8;
+    max-width:450px;
+    opacity:0.95;
+}
+
+.features{
+    margin-top:40px;
+    text-align:left;
+}
+
+.features p{
+    margin:12px 0;
+    font-size:16px;
+}
+
+/* RIGHT SIDE */
+
+.right-panel{
+    width:50%;
+    background:#f4f6f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.login-box{
+    width:100%;
+    max-width:400px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    animation:fadeIn 0.7s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.login-box h2{
+    font-size:32px;
+    margin-bottom:10px;
+    color:#222;
+}
+
+.login-box .subtitle{
+    color:gray;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+/* ERROR MESSAGE */
+
+.error-box{
+    background:#ffe5e5;
+    color:#d8000c;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:20px;
+    text-align:center;
+    font-weight:600;
+    border:1px solid #ffb3b3;
+}
+
+/* INPUTS */
+
+.input-box{
+    margin-bottom:20px;
+}
+
+.input-box input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.input-box input:focus{
+    border-color:#c33764;
+    box-shadow:0 0 8px rgba(195,55,100,0.3);
+}
+
+/* BUTTON */
+
+.login-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#c33764;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-btn:hover{
+    background:#1d2671;
+    transform:translateY(-2px);
+}
+
+/* EXTRA LINKS */
+
+.extra{
+    margin-top:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.extra a{
+    text-decoration:none;
+    color:#c33764;
+    font-size:14px;
+    font-weight:500;
+}
+
+.extra a:hover{
+    text-decoration:underline;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:25px;
+    text-decoration:none;
+    color:#555;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.back:hover{
+    color:#000;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width:900px){
+
+    body{
+        flex-direction:column;
+        overflow:auto;
+    }
+
+    .left-panel{
+        width:100%;
+        min-height:35vh;
+        padding:40px 25px;
+    }
+
+    .right-panel{
+        width:100%;
+        min-height:65vh;
+        padding:30px 20px;
+    }
+
+    .brand h1{
+        font-size:36px;
+    }
+
+    .brand p{
+        font-size:16px;
+    }
+
+    .features{
+        margin-top:25px;
+    }
+}
+
+@media(max-width:500px){
+
+    .login-box{
+        padding:30px 22px;
+    }
+
+    .login-box h2{
+        font-size:26px;
+    }
+
+    .extra{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .brand h1{
+        font-size:30px;
+    }
+
+    .brand p{
+        font-size:15px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- LEFT PANEL -->
+
+<div class="left-panel">
+
+    <div class="brand">
+
+        <h1>Welcome Back!</h1>
+
+        <p>
+            Access your ShopSphere account, manage orders,
+            explore products, and enjoy secure online shopping.
+        </p>
+
+        <div class="features">
+<p>&#128722; Easy Product Shopping</p>
+
+<p>&#128666; Fast Delivery Tracking</p>
+
+<p>&#128179; Secure UPI Payments</p>
+
+<p>&#127881; Exciting Offers & Discounts</p>
+
+
+        </div>
+        
+        <div>
+        <p> <b> Note:Make sure  Switch to Desktop mode before Login to get Good User Experience </b></p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- RIGHT PANEL -->
+
+<div class="right-panel">
+
+    <div class="login-box">
+
+        <h2>Customer Login</h2>
+
+        <p class="subtitle">
+            Please enter your credentials
+        </p>
+
+        <!-- LOGIN FORM -->
+
+        <form action="customerlogin" method="post">
+
+            <div class="input-box">
+                <input type="text"
+                       name="uname"
+                       placeholder="Enter Username"
+                       required>
+            </div>
+
+            <div class="input-box">
+                <input type="password"
+                       name="upwd"
+                       placeholder="Enter Password"
+                       required>
+            </div>
+
+            <input type="submit"
+                   value="Login"
+                   class="login-btn">
+
+        </form>
+
+        <!-- LINKS -->
+
+        <div class="extra">
+
+            <a href="CustomerRegister.html">
+                New User? Register
+            </a>
+
+            <a href="#">
+                Forgot Password?
+            </a>
+
+        </div>
+
+        <a href="index.html" class="back">
+           &#11013; Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+<!-- INVALID LOGIN MESSAGE -->
+
+<script>
+
+    const params = new URLSearchParams(window.location.search);
+
+    const msg = params.get("msg");
+
+    if(msg === "invalid"){
+
+        const error = document.createElement("div");
+
+        error.className = "error-box";
+
+        error.innerHTML = " Invalid Username or Password";
+
+        const form = document.querySelector("form");
+
+        form.parentNode.insertBefore(error, form);
+    }
+
+</script>
+
+</body>
+</html>

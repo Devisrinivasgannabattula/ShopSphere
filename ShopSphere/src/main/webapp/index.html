@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ShopSphere Portal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    background:radial-gradient(circle at top,#0f172a,#020617);
+    color:white;
+    position:relative;
+}
+
+/* ===== ANIMATED GRID ===== */
+
+body::before{
+    content:'';
+    position:fixed;
+    width:200%;
+    height:200%;
+
+    background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+
+    background-size:60px 60px;
+
+    transform:rotate(25deg);
+
+    top:-50%;
+    left:-50%;
+
+    animation:gridMove 20s linear infinite;
+
+    opacity:0.3;
+
+    z-index:-5;
+}
+
+@keyframes gridMove{
+
+    0%{
+        transform:rotate(25deg) translateY(0);
+    }
+
+    100%{
+        transform:rotate(25deg) translateY(60px);
+    }
+}
+
+/* ===== FLOATING GLOW ===== */
+
+body::after{
+    content:'';
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    background:#00f5ff;
+
+    filter:blur(120px);
+
+    top:-200px;
+    left:-200px;
+
+    opacity:0.25;
+
+    z-index:-4;
+}
+
+/* ===== BACKGROUND MARQUEE ===== */
+
+.marquee-bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:-3;
+    opacity:0.06;
+}
+
+.track{
+    white-space:nowrap;
+
+    font-size:90px;
+    font-weight:800;
+
+    color:#00f5ff;
+
+    margin:70px 0;
+
+    animation:moveText 25s linear infinite;
+}
+
+.track:nth-child(even){
+    animation-direction:reverse;
+}
+
+@keyframes moveText{
+
+    from{
+        transform:translateX(0%);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+}
+
+/* ===== NAVBAR ===== */
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:25px 70px;
+
+    position:relative;
+    z-index:10;
+
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:#00f5ff;
+    letter-spacing:1px;
+    text-decoration:none;
+}
+
+.logo span{
+    color:white;
+}
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+    flex-wrap:wrap;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:#cbd5e1;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#00f5ff;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+    min-height:calc(100vh - 120px);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px 20px;
+
+    position:relative;
+    z-index:10;
+}
+
+.hero-content{
+    max-width:1000px;
+    width:100%;
+}
+
+.hero h1{
+    font-size:58px;
+    line-height:75px;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#00f5ff;
+}
+
+.hero p{
+    color:#94a3b8;
+    font-size:16px;
+    margin-bottom:50px;
+    line-height:30px;
+}
+
+/* ===== CARDS ===== */
+
+.card-container{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+
+    margin-bottom:50px;
+}
+
+.card{
+    width:280px;
+
+    padding:28px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.06);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    transition:0.3s ease;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#00f5ff;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    background:#00f5ff;
+
+    filter:blur(60px);
+
+    top:-40px;
+    right:-40px;
+
+    opacity:0.2;
+}
+
+.card i{
+    font-size:40px;
+    color:#00f5ff;
+    margin-bottom:18px;
+}
+
+.card h3{
+    margin-bottom:12px;
+    font-size:22px;
+}
+
+.card p{
+    font-size:14px;
+    color:#94a3b8;
+    margin-bottom:22px;
+    line-height:26px;
+}
+
+/* ===== BUTTONS ===== */
+
+.btn{
+    display:inline-block;
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    text-align:center;
+
+    font-weight:600;
+
+    font-size:14px;
+
+    transition:0.3s;
+}
+
+.admin{
+    background:linear-gradient(135deg,#00f5ff,#3b82f6);
+    color:#0f172a;
+}
+
+.customer{
+    background:#111827;
+    color:white;
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* ===== STATS CARDS ===== */
+
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.stat{
+    width:240px;
+
+    padding:28px 20px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.06);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:0.3s;
+}
+
+.stat:hover{
+    transform:translateY(-8px);
+    border-color:#00f5ff;
+}
+
+.stat::before{
+    content:'';
+    position:absolute;
+
+    width:110px;
+    height:110px;
+
+    background:#00f5ff;
+
+    filter:blur(60px);
+
+    top:-40px;
+    right:-40px;
+
+    opacity:0.18;
+}
+
+.stat i{
+    font-size:34px;
+    color:#00f5ff;
+    margin-bottom:15px;
+}
+
+.stat h2{
+    font-size:32px;
+    color:#00f5ff;
+    margin-bottom:10px;
+}
+
+.stat p{
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+    width:100%;
+    text-align:center;
+
+    padding:25px 15px;
+
+    color:#64748b;
+
+    font-size:13px;
+
+    position:relative;
+    z-index:10;
+}
+
+/* ===== RIPPLE EFFECT ===== */
+
+.ripple{
+    position:fixed;
+
+    width:20px;
+    height:20px;
+
+    border-radius:50%;
+
+    border:2px solid #00f5ff;
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    animation:rippleAnim 0.8s ease-out forwards;
+
+    z-index:9999;
+}
+
+@keyframes rippleAnim{
+
+    0%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1);
+    }
+
+    100%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(6);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:900px){
+
+    .hero h1{
+        font-size:48px;
+        line-height:62px;
+    }
+
+    .track{
+        font-size:65px;
+    }
+}
+
+@media(max-width:768px){
+
+    nav{
+        flex-direction:column;
+        text-align:center;
+        padding:25px 20px;
+    }
+
+    nav ul{
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:38px;
+        line-height:52px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .card{
+        width:100%;
+        max-width:320px;
+    }
+
+    .stat{
+        width:100%;
+        max-width:320px;
+    }
+
+    .track{
+        font-size:48px;
+    }
+}
+
+@media(max-width:480px){
+
+    .hero{
+        padding:30px 15px;
+    }
+
+    .hero h1{
+        font-size:32px;
+        line-height:45px;
+    }
+
+    .hero p{
+        font-size:14px;
+        line-height:28px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .track{
+        font-size:34px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ===== BACKGROUND MARQUEE ===== -->
+
+<div class="marquee-bg">
+
+    <div class="track">
+        SHOPSPHERE &#8226;  FUTURISTIC ECOMMERCE &#8226;  SHOPSPHERE &#8226;  SMART SHOPPING &#8226; 
+    </div>
+
+    <div class="track">
+        DIGITAL STORE &#8226;  SHOPSPHERE &#8226;  MODERN UI &#8226;  SHOPSPHERE &#8226; 
+    </div>
+
+    <div class="track">
+        CLOUD SYSTEM &#8226;  SHOPSPHERE &#8226;  SECURE PAYMENTS &#8226;  SHOPSPHERE &#8226; 
+    </div>
+
+</div>
+
+<!-- ===== NAVBAR ===== -->
+
+<nav>
+
+    <a href="" class="logo">
+        Shop<span>Sphere</span>
+    </a>
+
+    <ul>
+
+        <li>
+            <a href="#">Home</a>
+        </li>
+
+        <li>
+            <a href="about.jsp">About</a>
+        </li>
+
+        <li>
+            <a href="https://devisrinivasportoflio.base44.app/" target="_blank">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+<!-- ===== HERO ===== -->
+
+<div class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Modern <span>Ecommerce</span><br>
+            Control Portal
+        </h1>
+
+        <p>
+            Manage everything in one place with a powerful and elegant
+            dashboard system designed for speed and simplicity.
+        </p>
+
+        <!-- ===== LOGIN CARDS ===== -->
+
+        <div class="card-container">
+
+            <div class="card">
+
+                <i class="fa-solid fa-user-shield"></i>
+
+                <h3>Admin Access</h3>
+
+                <p>
+                    Manage products, users and analytics
+                    with advanced dashboard controls.
+                </p>
+
+                <a href="AdminLogin.html" class="btn admin">
+                    Login as Admin
+                </a>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <h3>Customer Access</h3>
+
+                <p>
+                    Shop products, place orders and
+                    manage purchases easily.
+                </p>
+
+                <a href="CustomerLogin.html" class="btn customer">
+                    Login as Customer
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- ===== STATS CARDS ===== -->
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <i class="fa-solid fa-box-open"></i>
+
+                <h2>100K+</h2>
+
+                <p>Products Managed</p>
+
+            </div>
+
+            <div class="stat">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <h2>99.9%</h2>
+
+                <p>Secure Platform</p>
+
+            </div>
+
+            <div class="stat">
+
+                <i class="fa-solid fa-cloud"></i>
+
+                <h2>24/7</h2>
+
+                <p>Cloud Monitoring</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+
+<footer>
+    &copy; 2026 ShopSphere &bull; Built with modern UI experience by DeviSrinivas
+</footer>
+
+<!-- ===== RIPPLE EFFECT ===== -->
+
+<script>
+
+document.addEventListener("mousemove", (e)=>{
+
+    const ripple = document.createElement("div");
+
+    ripple.className = "ripple";
+
+    ripple.style.left = e.clientX + "px";
+    ripple.style.top = e.clientY + "px";
+
+    document.body.appendChild(ripple);
+
+    setTimeout(()=>{
+        ripple.remove();
+    },800);
+
+});
+
+</script>
+
+</body>
+</html>
